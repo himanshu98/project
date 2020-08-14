@@ -5,6 +5,7 @@ from django.contrib.auth import  login as auth_login
 from django.contrib.auth import  logout as auth_logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from home.models import Product
 # Create your views here.
 @login_required
 def index(request):
@@ -39,6 +40,14 @@ def registration(request):
         pass1=request.POST["pass1"]
         pass2=request.POST["pass2"]
         #check for erroneous input
+        #username shouldn't be already existed
+        if User.objects.filter(username=username).exists():
+            messages.warning(request,"username already exist")
+            return redirect('registration')
+        # email id should n't exist already
+        if User.objects.filter(email=email).exists():
+            messages.warning(request,"already registered from this email id")
+            return redirect('registration')
         #username should be under 10 characters
         if len(username) > 10:
             messages.warning(request,"username must be under 10 characters")
@@ -62,7 +71,6 @@ def registration(request):
     return render(request,'registration.html')
 
 def logout(request):
-    print("hitted successfully")
     auth_logout(request)
     messages.success(request,"Successfully logged out")
     return redirect('login')
