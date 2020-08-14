@@ -18,7 +18,7 @@ def login(request):
             messages.success(request,"Successfully logged in")
             return redirect('login')
         else:
-            messages.error(request,"Invalid credentials please try again")
+            messages.warning(request,"Invalid credentials please try again")
             return redirect('login')
     else:
         return render(request,'login.html') 
@@ -35,15 +35,15 @@ def registration(request):
         #check for erroneous input
         #username should be under 10 characters
         if len(username) > 10:
-            messages.error(request,"username must be under 10 characters")
+            messages.warning(request,"username must be under 10 characters")
             return redirect('registration')
         #username should be alphanumeric
         if not username.isalnum():
-            messages.error(request,"username should contain only letters and numbers")
+            messages.warning(request,"username should contain only letters and numbers")
             return redirect('registration')
         # if confirm password is not same
         if pass1!=pass2:
-            messages.error(request,"passwords do not match")
+            messages.warning(request,"passwords do not match")
             return redirect('registration')
         #create the user
         myuser=User.objects.create_user(username,email,pass1)
