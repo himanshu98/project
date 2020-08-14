@@ -11,10 +11,13 @@ from home.models import Product
 def index(request):
     #fetching the Products from database and display it to index page
     product=Product.objects.filter()
+    context={
+        "products":product
+    }
     for item in product:
         print(item.name,item.qty,item.url)
     print(product)
-    return render(request,'index.html')
+    return render(request,'index.html',context)
 
 
 def login(request):

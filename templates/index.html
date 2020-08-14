@@ -46,11 +46,11 @@ Home
 
 <div class="container my-3">
   <h1 class="my-4 text-center">CyberBoxer</h1>
-
   <div class="row">
+    {% for item in products %}
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-        <img src="https://source.unsplash.com/1200x900/?nature,water" class="d-block w-100" alt="...">
+        <img src={{item.url}} class="d-block w-100" alt="...">
         <div class="card-body">
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
             content. This content is a little bit longer.</p>
@@ -64,55 +64,7 @@ Home
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img src="https://source.unsplash.com/1200x900/?nature,uncle" class="d-block w-100" alt="...">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img src="https://source.unsplash.com/1200x900/?muscle,abs" class="d-block w-100" alt="...">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img src="https://source.unsplash.com/1200x900/?girl,boy" class="d-block w-100" alt="...">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-muted">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock body %}
