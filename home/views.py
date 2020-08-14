@@ -9,6 +9,10 @@ from home.models import Product
 # Create your views here.
 @login_required
 def index(request):
+    product=Product.objects.filter()
+    for item in product:
+        print(item.name,item.qty,item.url)
+    print(product)
     return render(request,'index.html')
 
 
