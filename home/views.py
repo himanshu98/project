@@ -22,7 +22,7 @@ def login(request):
 
         if user is not None:
             auth_login(request,user)
-            messages.success(request,"Successfully logged in")
+            messages.success(request,"Successfully logged in as a "+ str(request.user))
             return redirect('index')
         else:
             messages.warning(request,"Invalid credentials please try again")
