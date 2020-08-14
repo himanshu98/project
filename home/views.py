@@ -62,6 +62,7 @@ def registration(request):
     return render(request,'registration.html')
 
 def logout(request):
+    print("hitted successfully")
     auth_logout(request)
     messages.success(request,"Successfully logged out")
     return redirect('login')
