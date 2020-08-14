@@ -4,15 +4,19 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import  login as auth_login
 from django.contrib.auth import  logout as auth_logout
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required
 def index(request):
     return render(request,'index.html')
+
+
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         loginusername=request.POST['username']
         loginpassword=request.POST['password']
-
         user=authenticate(username=loginusername,password=loginpassword)
 
         if user is not None:
@@ -56,3 +60,8 @@ def registration(request):
         return redirect('login')
 
     return render(request,'registration.html')
+
+def logout(request):
+    auth_logout(request)
+    messages.success(request,"Successfully logged out")
+    return redirect('login')
