@@ -6,6 +6,8 @@ from django.contrib.auth import  logout as auth_logout
 from django.contrib.auth.models import User
 
 # Create your views here.
+def index(request):
+    return render(request,'index.html')
 def login(request):
     if request.method == 'POST':
         loginusername=request.POST['username']
@@ -16,7 +18,7 @@ def login(request):
         if user is not None:
             auth_login(request,user)
             messages.success(request,"Successfully logged in")
-            return redirect('login')
+            return redirect('index')
         else:
             messages.warning(request,"Invalid credentials please try again")
             return redirect('login')
