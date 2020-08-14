@@ -14,9 +14,6 @@ def index(request):
     context={
         "products":product
     }
-    for item in product:
-        print(item.name,item.qty,item.url)
-    print(product)
     return render(request,'index.html',context)
 
 
