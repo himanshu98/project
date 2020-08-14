@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponse
 
 # Create your views here.
-def index(request):
-    return HttpResponse("this is homepage") 
+def login(request):
+    return render(request,'login.html') 
+
+def registration(request):
+    return render(request,'registration.html')
