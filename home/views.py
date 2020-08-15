@@ -5,7 +5,8 @@ from django.contrib.auth import  login as auth_login
 from django.contrib.auth import  logout as auth_logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from home.models import Product
+from home.models import Product, Contact
+from datetime import datetime
 # Create your views here.
 @login_required
 def index(request):
@@ -79,3 +80,16 @@ def logout(request):
     auth_logout(request)
     messages.success(request,"Successfully logged out")
     return redirect('login')
+
+def contact(request):
+
+    if request.method=='POST':
+        name=request.POST.get("name")
+        email=request.POST.get("email")
+        phone=request.POST.get("phone")
+        desc=request.POST.get("desc")
+        contact=Contact(name=name,email=email,phone=phone,desc=desc,date=datetime.today())
+        contact.save()
+        messages.success(request, 'Your messages has been sent!!')
+
+    return render(request,'contact.html')    
